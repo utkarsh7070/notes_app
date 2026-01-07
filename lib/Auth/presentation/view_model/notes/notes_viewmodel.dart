@@ -27,7 +27,7 @@ class NotesViewModel extends StateNotifier<NotesState> {
     _loadNotes();
   }
 
-  void _loadNotes() {
+  Future<void> _loadNotes() async {
     if (kDebugMode) {
       print('[NotesViewModel] Loading notes for userId: $userId');
     }

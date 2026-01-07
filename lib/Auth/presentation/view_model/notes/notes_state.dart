@@ -26,23 +26,27 @@ class NotesLoaded extends NotesState {
   final List<NoteEntity> notes;
   final String searchQuery;
 
-  const NotesLoaded({required this.notes, this.searchQuery = ''});
+  const NotesLoaded({
+    required this.notes,
+    this.searchQuery = '',
+  });
 
   List<NoteEntity> get filteredNotes {
     if (searchQuery.isEmpty) return notes;
     return notes
-        .where(
-          (note) =>
-              note.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
-              note.content.toLowerCase().contains(searchQuery.toLowerCase()),
-        )
+        .where((note) =>
+    note.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
+        note.content.toLowerCase().contains(searchQuery.toLowerCase()))
         .toList();
   }
 
   @override
   List<Object?> get props => [notes, searchQuery];
 
-  NotesLoaded copyWith({List<NoteEntity>? notes, String? searchQuery}) {
+  NotesLoaded copyWith({
+    List<NoteEntity>? notes,
+    String? searchQuery,
+  }) {
     return NotesLoaded(
       notes: notes ?? this.notes,
       searchQuery: searchQuery ?? this.searchQuery,
@@ -50,8 +54,7 @@ class NotesLoaded extends NotesState {
   }
 
   @override
-  String toString() =>
-      'NotesLoaded(notes: ${notes.length}, searchQuery: "$searchQuery")';
+  String toString() => 'NotesLoaded(notes: ${notes.length}, searchQuery: "$searchQuery")';
 }
 
 class NotesError extends NotesState {
